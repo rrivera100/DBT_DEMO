@@ -5,8 +5,8 @@ with cte as
             hour(to_timestamp(started_at)) as hour_started_at,
             {{get_season('started_at')}} as season_of_year,
             {{get_day_type('started_at')}} as day_type
-
-    from {{ source('demo', 'bike') }}
+    from {{ ref('bike_correction') }}
+    -- from {{ source('demo', 'bike') }}
     where started_at != 'started_at'
 )
 
